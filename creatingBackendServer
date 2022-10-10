@@ -1,0 +1,24 @@
+1.) Add ES6 functionality in package.json with:
+    "type": "module",
+    
+2.) In backend folder, create a new file called server.js
+
+3.) Add the following code to server.js:
+
+import express from 'express' //imports express middleware
+import cors from 'cors'       //imports cors middleware
+import movies from './api/movies.route.js'
+
+const app = express()  // creates the server
+
+app.use(cors())          // attaches the cors middleware
+app.use(express.json())  // attaches the express middleware. express.json is JSON parsing middleware to enable the server to read and accept JSON
+
+app.use("/api/v1/movies", movies)                 //specifies initial routes
+app.use('*', (req,res)=>{
+  res.status(404).json({error: "not found"})
+})
+
+export default app // exports the app as a module
+
+
