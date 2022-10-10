@@ -1,0 +1,17 @@
+1. Create the env file to store environmental variables
+    add .env file to the project folder  // this is where we will set the URI of our Mongodb database
+    
+2.) Go to MongoDB and click on connect. Choose connection method of connect your application and copy the URL
+
+3.) Declare a variable and assign the copied URL to it as follows:
+
+<PROJECT NAME>_DB_URI=mongodb+srv://<user name>:<password>@cluster0.46ztogb.mongodb.net/<database name>?retryWrites=true&w=majority
+
+Make sure in the connect string you have filled in your own username, passwordl, and database name
+
+4.) Create another two variables in .env:
+
+<PROJECT NAME>_NS=<database name>
+<PORT>=<PORT NUMBER>
+
+next you will need to connect to the database and start the server. Please see connectingToDatabaseAndStartingServer
