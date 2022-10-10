@@ -1,0 +1,40 @@
+1.) First get an existing ID
+
+2.) Make a post request to http://localhost:3033/api/v1/movies/review
+
+3.) Provide a review body like:
+
+{
+	"movie_id": "573a1394f29313caabcdfa38",
+	"review": "great movie",
+	"user_id": "1234",
+	"name": "john"
+}
+
+4.) Click send and you should get a status: success response
+
+5.) Go to mongodb and look for your new post. You need to refresh if it is a new collection.
+
+6.) Next we will try to test the edit function. We will need the review_id of an existing review.
+
+7.) We will now send a PUT request with a JSON object like:
+
+{
+"review_id": "63438f3db02f7e4447aa5e84",
+"review": "bad movie",
+"user_id": "1234",
+"name": "john"
+}
+
+8.) Go to mongodb and check that it was edited
+
+9.) Next we will check the delete review endpoint. Send a delete request to your localhost like:
+
+{
+  "review_id": "63438f3db02f7e4447aa5e84",
+  "user_id": "1234"
+}
+
+10.) Go to mongodb and select refresh to verify the post no longer exists
+
+NEXT WE WILL CREATE A ROUTE TO GET A SINGLE ITEM AND ITS VALUES
