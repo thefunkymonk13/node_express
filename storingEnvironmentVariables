@@ -12,6 +12,6 @@ Make sure in the connect string you have filled in your own username, passwordl,
 4.) Create another two variables in .env:
 
 <PROJECT NAME>_NS=<database name>
-<PORT>=<PORT NUMBER>
+<PORT>=<PORT NUMBER>              // the port number should be in the 3000-4000 range. Using port 5000 doesn't work.
 
 next you will need to connect to the database and start the server. Please see connectingToDatabaseAndStartingServer
