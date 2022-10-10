@@ -1,0 +1,5 @@
+1.) In movies.route.js add:
+
+router.route("/id/:id").get(MoviesController.apiGetMovieById)
+router.route("/ratings").get(MoviesController.apiGetRatings)
+
