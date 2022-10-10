@@ -1,0 +1,29 @@
+1.) Install Node.js
+
+2.) Go to terminal and run:
+  node -v
+  
+3.) In terminal create your project folder:
+    mkdir <project name>
+    
+4.) cd to your <project name> and in your terminal:
+    mkdir backend
+    cd backend
+5.) Create a package.json file in the folder by running:
+    npm init -y
+    
+6.) Install a few dependencies by running:
+    npm install express cors mongodb dotenv
+    
+7.) Install nodemon:
+    npm install -g nodemon
+    
+NPM PACKAGES
+
+cors- Provides and express middleware that can enable CORS with different options so we can make the right connections on the network
+
+mongodb- Allows us to interact with the MongoDB database
+
+dotenv- Loads environmental variables from the process.env file instead of setting them on our development machine
+
+nodemon- Automatically detects code changes and restarts the Node server
