@@ -1,0 +1,108 @@
+1.) In the backend directory, create a directory called dao
+    cd backend
+    mkdir dao
+
+2.) In dao, create the file <relevant thing>DAO.js with the following code:
+
+import mongodb from "mongodb"
+const ObjectId = mongodb.ObjectID
+
+let movies 
+
+export default class MoviesDAO{ 
+    static async injectDB(conn){ 
+        if(movies){ 
+            return
+        }
+        try{ 
+            movies = await conn.db(process.env.MOVIEREVIEWS_NS)
+					.collection('movies')
+        } 
+        catch(e){
+            console.error(`unable to connect in MoviesDAO: ${e}`)
+        }
+    }
+
+// Retrieving Data
+
+    static async getMovieById(id){        
+        try{                                                 
+            return await movies.aggregate([
+                {
+                    $match: {
+                        _id: new ObjectId(id),
+                    }
+                }    ,
+                { $lookup:
+                    {
+                        from: 'reviews',
+                        localField: '_id',
+                        foreignField: 'movie_id',
+                        as: 'reviews',
+                    }
+                }       
+            ]).next()            
+        }
+        catch(e){
+            console.error(`something went wrong in getMovieById: ${e}`)
+            throw e
+        }
+    }
+
+
+    static async getMovies({// default filter
+        filters = null,
+        page = 0,
+        moviesPerPage = 20, // will only get 20 movies at once
+    } = {}){
+        let query 
+        if(filters){ 
+            if("title" in filters){ 
+                query = { $text: { $search: filters['title']}}
+            }else if("rated" in filters){ 
+                query = { "rated": { $eq: filters['rated']}} 
+            }                                
+        }
+
+        let cursor 
+        try{
+			cursor = await movies
+					.find(query)
+					.limit(moviesPerPage)
+					.skip(moviesPerPage * page)           
+            const moviesList = await cursor.toArray()
+            const totalNumMovies = await movies.countDocuments(query)
+            return {moviesList, totalNumMovies}
+        }
+        catch(e){
+            console.error(`Unable to issue find command, ${e}`)
+            return { moviesList: [], totalNumMovies: 0}
+        }
+    }
+
+    static async getRatings(){
+        let ratings = []
+        try{
+            ratings = await movies.distinct("rated") 
+            return ratings
+        }
+        catch(e){
+            console.error(`unable to get ratings, $(e)`)
+            return ratings
+        }
+    }
+
+}
+
+3.) Next you need to import your DAO in index.js:
+
+import MoviesDAO from './dao/moviesDAO.js'
+
+4.) Then you need to call injectDB into index.js beneath await client.connect():
+
+await MoviesDAO.injectDB(client)
+
+Next we will create the <project name> (movies) controller
+
+
+
