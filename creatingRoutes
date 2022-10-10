@@ -1,0 +1,14 @@
+1.) In the backend folder, create a new folder called api
+
+2.) Create a new file
+  <relevant thing>.route.js
+  
+3.) Fill that file with the following code:
+
+import express from 'express'
+
+const router = express.Router() // get access to express router
+
+router.route('/').get((req,res) => res.send('hello world'))
+
+export default router
