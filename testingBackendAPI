@@ -1,0 +1,33 @@
+1.) Go to your route in your browser to make sure you can see the data. Our example is:
+
+http://localhost:3033/api/v1/movies
+
+2.) Download Insomnia to test API's
+
+3.) Make a GET request to your API. Our example again is:
+
+http://localhost:3033/api/v1/movies
+
+NEXT WE WILL TEST THE FILTERS
+
+4.) To apply filters we add them to the URL query string for example:
+
+http://localhost:3033/api/v1/movies?rated=G
+
+5.) To filter for page 2:
+
+http://localhost:3033/api/v1/movies?rated=G&page=2
+
+6.) To search by title you need to set up the title index in MongoDB. Go to your database, collection and then select Indexes
+
+7.) Select create index and under fields enter
+
+{
+  "title": "text",
+}
+
+8.) Select confirm and it will create our index to support text search queries on string content. You can test it by sending a request to:
+
+http://localhost:3033/api/v1/movies?title=Seven
+
+NEXT WE WILL ADD THE ROUTES FOR POST, PUT, AND DELETE
