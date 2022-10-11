@@ -1,0 +1,27 @@
+1.) Create a react app by running:
+
+npx create-react-app <project name>
+
+our example is npx create-react-app frontend
+
+2.) In the terminal:
+  cd frontend
+  
+3.) In the terminal:
+  npm start
+  
+4.) Next we will add React bootstrap framework in the terminal with:
+  npm install react-bootstrap bootstrap
+
+5.) Next install react-router-dom 5.2.0 in the terminal with:
+  npm install --save react-router-dom@5.2.0
+  
+6. Add the following code to App.js:
+  import React from 'react'
+import { Switch, Route, Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
+  
+7.) Test by running in the terminal:
+  npm start
+
+NEXT WE WILL CREATE THE NAVIGATION HEADER BAR
