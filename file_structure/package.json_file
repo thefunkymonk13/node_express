@@ -1,1 +1,29 @@
+Two purposes are to describe your project and list its dependencies.
 
+Example:
+
+{
+  "name": "mernstack",      // Name of the project
+  "version": "1.0.0",       // Version of the project
+  "description": "",        // Description of the project
+  "main": "index.js",
+  "type": "module",         // Adding type and module allows you to use ES6
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",  // Type npm run test
+    "start": "node index.js" // Type npm run start
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines":{
+    "node": "16.17.0".       // added for deploying to heroku
+  },
+  "dependencies": {                 // These are modules that are usee by your backend
+    "axios": "^0.21.1",             // Axios 
+    "cors": "^2.8.5",               // Cross origin resource sharing. Allows you to lift same-origin policy on a case by case basis
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",           // Express is a node.js framework that provides a robust set of features for web and mobile applications
+    "mongodb": "^3.6.9",            // Allows your server to connect to mongodb
+    "nodemon": "^2.0.20"            // Allows your server to update without needing to restart it
+  }
+}
